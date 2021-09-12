@@ -3,6 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/DSP/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/DSP/app/src/main/res/layout/activity_settings.xml" value="0.1213768115942029" />
+        <entry key="..\:/DSP/app/src/main/res/layout/recipe.xml" value="0.13323201621073963" />
+        <entry key="..\:/DSP/app/src/main/res/layout/recipe_layout.xml" value="0.5" />
         <entry key="..\:/DSP/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.22135416666666666" />
       </map>
     </option>

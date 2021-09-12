@@ -1,13 +1,13 @@
-package dsp.calculator;
+package dsp.calculator.view;
 
-import static dsp.calculator.bo.Settings.ASSEMBLEUR_MK1;
-import static dsp.calculator.bo.Settings.ASSEMBLEUR_MK2;
-import static dsp.calculator.bo.Settings.ASSEMBLEUR_MK3;
-import static dsp.calculator.bo.Settings.FILE_SETTINGS;
-import static dsp.calculator.bo.Settings.KEY_ASSEMBLEUR_RATIO;
-import static dsp.calculator.bo.Settings.KEY_SMELTER_RATIO;
-import static dsp.calculator.bo.Settings.SMELTER_MK1;
-import static dsp.calculator.bo.Settings.SMELTER_MK2;
+import static dsp.calculator.controller.Settings.ASSEMBLEUR_MK1;
+import static dsp.calculator.controller.Settings.ASSEMBLEUR_MK2;
+import static dsp.calculator.controller.Settings.ASSEMBLEUR_MK3;
+import static dsp.calculator.controller.Settings.FILE_SETTINGS;
+import static dsp.calculator.controller.Settings.KEY_ASSEMBLEUR_RATIO;
+import static dsp.calculator.controller.Settings.KEY_SMELTER_RATIO;
+import static dsp.calculator.controller.Settings.SMELTER_MK1;
+import static dsp.calculator.controller.Settings.SMELTER_MK2;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,7 +18,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import dsp.calculator.bo.Settings;
+import dsp.calculator.R;
+import dsp.calculator.controller.App;
+import dsp.calculator.controller.Settings;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -40,14 +42,14 @@ public class SettingsActivity extends AppCompatActivity {
         super.onStart();
 
         //Sélection du radio lié à la valeur
-        switch(Settings.getInstance().getAssemblerRatio()){
+        switch(App.getInstance().getSettings().getAssemblerRatio()){
             case ASSEMBLEUR_MK1: optAssemblerMk1.setChecked(true); break;
             case ASSEMBLEUR_MK2: optAssemblerMk2.setChecked(true); break;
             case ASSEMBLEUR_MK3: optAssemblerMk3.setChecked(true); break;
         }
 
         //Sélection du radio lié à la valeur
-        switch(Settings.getInstance().getSmelterRatio()){
+        switch(App.getInstance().getSettings().getSmelterRatio()){
             case SMELTER_MK1: optSmelterMk1.setChecked(true); break;
             case SMELTER_MK2: optSmelterMk2.setChecked(true); break;
         }
@@ -74,37 +76,19 @@ public class SettingsActivity extends AppCompatActivity {
      * Actions sur boutons
      */
     private void setActions(){
-        btnSave.setOnClickListener((view)->saveSettings());
+        btnSave.setOnClickListener((view)-> {
+                App.getInstance().getSettings().save(
+                        optGroupAssembleur.getCheckedRadioButtonId(),
+                        optGroupSmelter.getCheckedRadioButtonId()
+                );
+                Toast.makeText(this, "Settings saved", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this, MainActivity.class));
+            }
+        );
         btnReturn.setOnClickListener((view)->
                 startActivity(new Intent(this, MainActivity.class))
         );
     }
 
-    /**
-     * Sauvegarde du paramétrage utilisateur
-     */
-    protected void saveSettings(){
-        switch(optGroupAssembleur.getCheckedRadioButtonId()) {
-            case R.id.optionAssemblerMk1:
-                getSharedPreferences(FILE_SETTINGS, MODE_PRIVATE).edit().putInt(KEY_ASSEMBLEUR_RATIO, ASSEMBLEUR_MK1).apply();
-                break;
-            case R.id.optionAssemblerMk2:
-                getSharedPreferences(FILE_SETTINGS, MODE_PRIVATE).edit().putInt(KEY_ASSEMBLEUR_RATIO, ASSEMBLEUR_MK2).apply();
-                break;
-            case R.id.optionAssemblerMk3:
-                getSharedPreferences(FILE_SETTINGS, MODE_PRIVATE).edit().putInt(KEY_ASSEMBLEUR_RATIO, ASSEMBLEUR_MK3).apply();
-                break;
-        }
 
-        switch(optGroupSmelter.getCheckedRadioButtonId()) {
-            case R.id.optionSmelterMk1:
-                getSharedPreferences(FILE_SETTINGS, MODE_PRIVATE).edit().putInt(KEY_SMELTER_RATIO, SMELTER_MK1).apply();
-            case R.id.optionSmelterMk2:
-                getSharedPreferences(FILE_SETTINGS, MODE_PRIVATE).edit().putInt(KEY_SMELTER_RATIO, SMELTER_MK2).apply();
-        }
-
-        Toast.makeText(this, "Settings saved", Toast.LENGTH_SHORT).show();
-
-        startActivity(new Intent(this, MainActivity.class));
-    }
 }
