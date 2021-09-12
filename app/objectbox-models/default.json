@@ -1,0 +1,75 @@
+{
+  "_note1": "KEEP THIS FILE! Check it into a version control system (VCS) like git.",
+  "_note2": "ObjectBox manages crucial IDs for your object model. See docs for details.",
+  "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
+  "entities": [
+    {
+      "id": "1:8511037174633702658",
+      "lastPropertyId": "2:531936034333749509",
+      "name": "Consumption",
+      "properties": [
+        {
+          "id": "1:4050878149434428283",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:531936034333749509",
+          "name": "rate",
+          "type": 7,
+          "flags": 4
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "2:3437427670293718723",
+      "lastPropertyId": "5:8730898978752514581",
+      "name": "Recipe",
+      "properties": [
+        {
+          "id": "1:1559798211903442824",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:8998075016399926828",
+          "name": "name",
+          "type": 9
+        },
+        {
+          "id": "3:1570528241112018732",
+          "name": "rateByMinute",
+          "type": 7,
+          "flags": 4
+        },
+        {
+          "id": "4:4006169869319947669",
+          "name": "alternativeRateByMinute",
+          "type": 7,
+          "flags": 4
+        },
+        {
+          "id": "5:8730898978752514581",
+          "name": "facilityType",
+          "type": 5,
+          "flags": 4
+        }
+      ],
+      "relations": []
+    }
+  ],
+  "lastEntityId": "2:3437427670293718723",
+  "lastIndexId": "0:0",
+  "lastRelationId": "0:0",
+  "lastSequenceId": "0:0",
+  "modelVersion": 5,
+  "modelVersionParserMinimum": 5,
+  "retiredEntityUids": [],
+  "retiredIndexUids": [],
+  "retiredPropertyUids": [],
+  "retiredRelationUids": [],
+  "version": 1
+}
