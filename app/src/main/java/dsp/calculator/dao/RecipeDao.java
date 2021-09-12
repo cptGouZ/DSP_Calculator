@@ -10,28 +10,28 @@ import dsp.calculator.bo.Recipe;
 @Dao
 public abstract class RecipeDao {
     @Insert
-    public abstract void insertRecipe(Recipe recipe);
+    protected abstract long insertRecipe(Recipe recipe);
 
     @Insert
-    public abstract void insertConsumptionList(List<Consumption> consumptions);
+    protected abstract long[] insertConsumptionList(List<Consumption> consumptions);
 
-    @Query("SELECT * FROM Recipe WHERE name =:name")
-    public abstract Recipe getRecipe(String name);
+    @Query("SELECT * FROM Recipe WHERE id =:id")
+    protected abstract Recipe getRecipe(long id);
 
-    @Query("SELECT * FROM Consumption WHERE recipeName =:recipeName")
-    public abstract List<Consumption> getConsumptionList(String recipeName);
+    @Query("SELECT * FROM Consumption WHERE recipeId =:recipeId")
+    protected abstract List<Consumption> getConsumptionList(long recipeId);
 
     public void insertRecipeWithConsumptions(Recipe recipe) {
+        recipe.setId(insertRecipe(recipe));
         for (Consumption c : recipe.getConsumptions()) {
-            c.setRecipeName(recipe.getName());
+            c.setRecipeId(recipe.getId());
         }
         insertConsumptionList(recipe.getConsumptions());
-        insertRecipe(recipe);
     }
 
-    public Recipe getRecipeWithConsumptions(String recipeName) {
-        Recipe recipe = getRecipe(recipeName);
-        List<Consumption> consumptions = getConsumptionList(recipeName);
+    public Recipe getRecipeWithConsumptions(long recipeId) {
+        Recipe recipe = getRecipe(recipeId);
+        List<Consumption> consumptions = getConsumptionList(recipeId);
         recipe.setConsumptions(consumptions);
         return recipe;
     }

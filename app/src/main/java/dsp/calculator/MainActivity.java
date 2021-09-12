@@ -15,12 +15,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 
-import dsp.calculator.bo.Consumption;
-import dsp.calculator.bo.Recipe;
 import dsp.calculator.bo.Settings;
-import dsp.calculator.dao.DatabaseManager;
-import dsp.calculator.dao.RecipeDao;
-import dsp.calculator.dao.TestThread;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
         TestThread p = new TestThread(143);
         p.setContext(this);

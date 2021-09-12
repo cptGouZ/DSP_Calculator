@@ -17,8 +17,8 @@ import lombok.NoArgsConstructor;
 @Entity
 public class Consumption {
     @PrimaryKey(autoGenerate = true)
-    private int id;
-    private String recipeName;
+    private long id;
+    private long recipeId;
     private String consumedRecipeName;
     private float rate;
 }

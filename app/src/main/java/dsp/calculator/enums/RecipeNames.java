@@ -20,7 +20,7 @@ public interface RecipeNames {
     String IRON_INGOT = "iron ingot";
     String COPPER_INGOT = "copper ingot";
     String STONE_BRICK = "stone brick";
-    String ENERGETIC_GRAPHIT = "energetic graphit";
+    String ENERGETIC_GRAPHITE = "energetic graphite";
     String HIGH_PURITY_SILICON = "high purity silicon";
     String TITANIUM_INGOT = "titanium ingot";
     String SULFURIC_ACID = "sulfuric acid";
@@ -29,7 +29,7 @@ public interface RecipeNames {
     String DEUTERON_FUEL_ROD = "deuteron fuel rod";
     String ANTIMATTER_FUEL_ROD = "antimatter fuel rod";
     String MAGNET = "magnet";
-    String MAGNETIC COIL = "magnetic coil";
+    String MAGNETIC_COIL = "magnetic coil";
     String GLASS = "glass";
     String DIAMOND = "diamond";
     String CRYSTAL_SILICON = "crystal silicon";
