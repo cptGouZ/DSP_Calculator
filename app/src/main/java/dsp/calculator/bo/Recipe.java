@@ -16,19 +16,21 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Recipe{
+public class Recipe {
     @PrimaryKey(autoGenerate = true)
     private long id;
     private String name;
     private String facilityType;
     private float rateByMinute;
+    private String pictureAltName;
     @Ignore
     private List<Consumption> consumptions = new ArrayList<>();
 
-    public Recipe(String name, String facilityType, float rateByMinute, List<Consumption> consumptions) {
+    public Recipe(String name, String facilityType, float rateByMinute, String pictureAltName, List<Consumption> consumptions) {
         this.name = name;
         this.facilityType = facilityType;
         this.rateByMinute = rateByMinute;
         this.consumptions = consumptions;
+        this.pictureAltName = pictureAltName;
     }
 }

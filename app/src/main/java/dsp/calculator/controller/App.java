@@ -8,6 +8,7 @@ import dsp.calculator.Datas;
 import dsp.calculator.bo.Recipe;
 import dsp.calculator.dao.DatabaseManager;
 import dsp.calculator.dao.RecipeDao;
+import dsp.calculator.enums.RecipeNames;
 import lombok.Data;
 
 @Data
@@ -19,6 +20,8 @@ public class App {
 
     //Singleton
     private static App instance;
+    private RecipeDao rdao;
+
     private App(){}
     public static App getInstance(){
         return instance;
@@ -35,7 +38,7 @@ public class App {
     }
 
     private void loadDatabase(){
-        RecipeDao rdao = DatabaseManager.getInstance(context).recipeDao();
+        rdao = DatabaseManager.getInstance(context).recipeDao();
         //Load database
         try {
             Thread t = new Thread(() -> {
@@ -51,5 +54,13 @@ public class App {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public List<Recipe> calcul(String recipeToMake, float wantedRate){
+        final List<Recipe>[] retour = new List[]{new ArrayList<>()};
+        Thread t = new Thread(()->{
+            retour[0] =rdao.getByName(RecipeNames.UNIVERSE_MATRIX);
+        });
+        return retour[0];
     }
 }
