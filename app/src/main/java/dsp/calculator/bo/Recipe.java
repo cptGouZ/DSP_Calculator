@@ -1,6 +1,7 @@
 package dsp.calculator.bo;
 
-import androidx.annotation.NonNull;
+import android.content.Context;
+
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
@@ -8,6 +9,7 @@ import androidx.room.PrimaryKey;
 import java.util.ArrayList;
 import java.util.List;
 
+import dsp.calculator.App;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -32,5 +34,12 @@ public class Recipe {
         this.rateByMinute = rateByMinute;
         this.consumptions = consumptions;
         this.pictureAltName = pictureAltName;
+    }
+    public int getImageId() {
+        Context c = App.getContext();
+        return c.getResources().getIdentifier(
+                getPictureAltName(),
+                "mipmap",
+                c.getPackageName());
     }
 }

@@ -10,7 +10,8 @@
         android:id="@+id/cmbRecipe"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:spinnerMode="dropdown"
         app:layout_constraintBottom_toBottomOf="@+id/txtWantedRate"
         app:layout_constraintEnd_toStartOf="@+id/txtWantedRate"
@@ -19,33 +20,19 @@
         app:layout_constraintTop_toTopOf="@+id/txtWantedRate"
         app:layout_constraintVertical_bias="1.0" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="What you need ?"
-        app:layout_constraintStart_toStartOf="@+id/cmbRecipe"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <EditText
         android:id="@+id/txtWantedRate"
-        android:layout_width="82dp"
-        android:layout_height="49dp"
-        android:layout_marginEnd="16dp"
+        android:layout_width="79dp"
+        android:layout_height="61dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:ems="10"
+        android:hint="qte/min"
         android:inputType="number"
         app:layout_constraintEnd_toStartOf="@+id/btnSubmit"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/cmbRecipe"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Quantity per minute"
-        app:layout_constraintStart_toStartOf="@+id/txtWantedRate"
-        app:layout_constraintTop_toTopOf="@+id/textView" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <FrameLayout
         android:layout_width="0dp"
@@ -56,9 +43,10 @@
         app:layout_constraintTop_toTopOf="@+id/guideline3">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view"
+            android:id="@+id/recipe_liste"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:background="#9A5656" />
     </FrameLayout>
 
     <androidx.constraintlayout.widget.Guideline
@@ -68,13 +56,13 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="80dp" />
 
-    <ImageButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnSubmit"
-        android:layout_width="49dp"
-        android:layout_height="47dp"
+        android:layout_width="57dp"
+        android:layout_height="58dp"
+        android:layout_marginEnd="8dp"
         android:background="@color/white"
-        android:scaleType="fitXY"
-        android:src="@drawable/ic_baseline_check_circle_24"
+        android:src="@android:drawable/ic_input_add"
         app:layout_constraintBottom_toBottomOf="@+id/txtWantedRate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

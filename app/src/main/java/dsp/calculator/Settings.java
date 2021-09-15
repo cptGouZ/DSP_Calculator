@@ -1,8 +1,12 @@
-package dsp.calculator.controller;
+package dsp.calculator;
 
 import static android.content.Context.MODE_PRIVATE;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+
 import dsp.calculator.R;
+import dsp.calculator.databinding.ActivitySettingsBinding;
 
 public class Settings {
     public static final String FILE_SETTINGS = "settings";
@@ -18,6 +22,8 @@ public class Settings {
     private int assemblerRatio;
     private int smelterRatio;
 
+    private ActivitySettingsBinding binding;
+
     Settings(Context context){
         this.context = context;
     }
@@ -30,7 +36,7 @@ public class Settings {
     }
 
     private void setAssemblerRatio(int assemblerRatio) {
-        context.getSharedPreferences(FILE_SETTINGS, MODE_PRIVATE)
+         context.getSharedPreferences(FILE_SETTINGS, MODE_PRIVATE)
                 .edit()
                 .putInt(KEY_ASSEMBLEUR_RATIO, assemblerRatio)
                 .apply();

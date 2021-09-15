@@ -1,10 +1,11 @@
-package dsp.calculator.controller;
+package dsp.calculator;
 
+import android.app.Application;
 import android.content.Context;
 
 import java.util.ArrayList;
 import java.util.List;
-import dsp.calculator.Datas;
+
 import dsp.calculator.bo.Recipe;
 import dsp.calculator.dao.DatabaseManager;
 import dsp.calculator.dao.RecipeDao;
@@ -12,41 +13,41 @@ import dsp.calculator.enums.RecipeNames;
 import lombok.Data;
 
 @Data
-public class App {
+public class App extends Application {
+    //Singleton
+    private static App instance;
+
     private Context context;
     private Settings settings;
     private List<Recipe> recipes = new ArrayList<>();
-    private List<String> recipesName = new ArrayList<>();
-
-    //Singleton
-    private static App instance;
     private RecipeDao rdao;
 
-    private App(){}
-    public static App getInstance(){
+    @Override
+    public void onCreate() {
+        instance = this;
+        context = this.getApplicationContext();
+        instance.setSettings( new Settings(context) );
+        instance.loadDatabase();
+        super.onCreate();
+    }
+
+    public static App getInstance() {
         return instance;
     }
 
-    public static App setInstance(Context context){
-        if(instance == null){
-            instance = new App();
-            instance.context = context;
-            instance.setSettings( new Settings(context) );
-            instance.loadDatabase();
-        }
-        return instance;
+    public static Context getContext() {
+        return instance.context;
     }
 
-    private void loadDatabase(){
-        rdao = DatabaseManager.getInstance(context).recipeDao();
+    private void loadDatabase() {
+        rdao = DatabaseManager.getInstance().recipeDao();
         //Load database
         try {
             Thread t = new Thread(() -> {
-                DatabaseManager.getInstance(context).clearAllTables();
+                DatabaseManager.getInstance().clearAllTables();
                 recipes = Datas.recipesToLoadInDatabase(rdao);
                 for (Recipe r: recipes ) {
                     rdao.add(r);
-                    recipesName.add(r.getName());
                 }
             });
             t.start();

@@ -6,6 +6,7 @@ import androidx.room.Query;
 import java.util.List;
 import dsp.calculator.bo.Consumption;
 import dsp.calculator.bo.Recipe;
+import dsp.calculator.enums.RecipeNames;
 
 @Dao
 public abstract class RecipeDao {

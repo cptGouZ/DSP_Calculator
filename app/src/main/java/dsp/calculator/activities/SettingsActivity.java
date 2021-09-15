@@ -1,10 +1,10 @@
 package dsp.calculator.activities;
 
-import static dsp.calculator.controller.Settings.ASSEMBLEUR_MK1;
-import static dsp.calculator.controller.Settings.ASSEMBLEUR_MK2;
-import static dsp.calculator.controller.Settings.ASSEMBLEUR_MK3;
-import static dsp.calculator.controller.Settings.SMELTER_MK1;
-import static dsp.calculator.controller.Settings.SMELTER_MK2;
+import static dsp.calculator.Settings.ASSEMBLEUR_MK1;
+import static dsp.calculator.Settings.ASSEMBLEUR_MK2;
+import static dsp.calculator.Settings.ASSEMBLEUR_MK3;
+import static dsp.calculator.Settings.SMELTER_MK1;
+import static dsp.calculator.Settings.SMELTER_MK2;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,7 +16,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import dsp.calculator.R;
-import dsp.calculator.controller.App;
+import dsp.calculator.App;
 
 public class SettingsActivity extends AppCompatActivity {
 

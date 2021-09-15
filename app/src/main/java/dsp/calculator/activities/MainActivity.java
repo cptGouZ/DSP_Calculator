@@ -5,47 +5,33 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
-import android.widget.ImageButton;
-import android.widget.Spinner;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-
-import java.util.List;
 
 import dsp.calculator.R;
 import dsp.calculator.adapter.RecipeAdapter;
-import dsp.calculator.bo.Recipe;
-import dsp.calculator.controller.App;
+import dsp.calculator.adapter.SpinnerItemAdapter;
+import dsp.calculator.App;
+import dsp.calculator.databinding.ActivityMainBinding;
+import dsp.calculator.enums.RecipeNames;
 
 public class MainActivity extends AppCompatActivity {
-    Spinner cmbRecipe;
-    TextView txtWantedRate;
-    ImageButton btnSubmit;
+    private ActivityMainBinding binding;
+    private RecipeAdapter recipeAdapter = new RecipeAdapter();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        App.setInstance(this);
-        getViewMembers();
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+        recipeAdapter.setRecipesToDisplay(App.getInstance().getRecipes());
+        binding.recipeListe.setLayoutManager(new LinearLayoutManager(this));
+        binding.recipeListe.setAdapter(recipeAdapter);
+        setBindings();
         setActions();
-
-
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        List<Recipe> liste = App.getInstance().calcul(null, 0);
-        RecipeAdapter recipeAdapter = new RecipeAdapter(liste);
-        RecyclerView recyclerView = findViewById(R.id.recycler_view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(recipeAdapter);
     }
 
     @Override
@@ -65,40 +51,25 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void getViewMembers(){
-        ArrayAdapter adapter= new ArrayAdapter(
-                this, android.R.layout.simple_spinner_item,
-                App.getInstance().getRecipesName().toArray()
-        );
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        txtWantedRate = findViewById(R.id.txtWantedRate);
-        btnSubmit = findViewById(R.id.btnSubmit);
-        cmbRecipe = findViewById(R.id.cmbRecipe);
-        cmbRecipe.setAdapter(adapter);
-//        cmbRecipe = findViewById(R.id.cmbRecipe);
-//        ArrayAdapter adapter= new ArrayAdapter(
-//            this, R.layout.recipe_spinner_layout,
-//            App.getInstance().getRecipesName().toArray()
-//        );
-//        adapter.setDropDownViewResource(R.layout.recipe_spinner_layout);
-//        cmbRecipe.setAdapter(adapter);
+    private void setBindings(){
+
+        SpinnerItemAdapter spinnerArrayAdapter = new SpinnerItemAdapter(
+                this,
+                android.R.layout.simple_spinner_dropdown_item,
+                App.getInstance().getRecipes()
+        );
+        spinnerArrayAdapter.setDropDownViewResource(R.layout.recipe_spinner_dropdown_layout);
+        binding.cmbRecipe.setAdapter(spinnerArrayAdapter);
+        binding.cmbRecipe.setPrompt("Recipe to make ?");
     }
 
     private void setActions(){
-        btnSubmit.setOnClickListener((view)->{
-            Log.i("TAG", "setActions: JE NE PASSE PAS" + String.valueOf( App.getInstance().calcul("tata", 0.2f)) );
-            String recipeToMake = cmbRecipe.getSelectedItem().toString();
-            float wantedRate = Float.parseFloat(String.valueOf(txtWantedRate.getText()));
-            ;
-
-            RecipeAdapter recipeAdapter = new RecipeAdapter(App.getInstance().calcul(recipeToMake, wantedRate));
-            RecyclerView recyclerView = findViewById(R.id.recycler_view);
-            recyclerView.setLayoutManager(new LinearLayoutManager(this));
-            recyclerView.setAdapter(recipeAdapter);
-
+        binding.btnSubmit.setOnClickListener((view)->{
+            Log.i("TAG", "setActions: JE NE PASSE PAS" + String.valueOf( App.getInstance().calcul(RecipeNames.ANNIHILATION_CONSTRAINT_SPHERE, 0.2f)) );
+            //String recipeToMake = binding.cmbRecipe.getSelectedItem().toString();
+            //float wantedRate = Float.parseFloat(String.valueOf(binding.txtWantedRate.getText()));
+            Toast.makeText(this, "J'ai appuié", Toast.LENGTH_SHORT).show();
         });
     }
-
-
 }
