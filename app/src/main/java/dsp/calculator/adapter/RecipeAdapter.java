@@ -11,18 +11,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dsp.calculator.bo.Recipe;
+import dsp.calculator.bo.RecipeCalculation;
 import dsp.calculator.databinding.RecipeLayoutBinding;
 
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeHolder> {
-    List<Recipe> recipesToDisplay;
-    public RecipeAdapter() {
-        Log.i("adapter", "RecipeAdapter: ");
-        setRecipesToDisplay(new ArrayList<>());
-    }
+    List<RecipeCalculation> recipesToDisplay = new ArrayList<>();
 
-    public void setRecipesToDisplay(List<Recipe> recipesToDisplay) {
-        Log.i("adapter", "setRecipesToDisplay: " + recipesToDisplay.size());
+    public void setRecipesToDisplay(List<RecipeCalculation> recipesToDisplay) {
         this.recipesToDisplay = recipesToDisplay;
+        notifyDataSetChanged();
     }
 
     /**
@@ -30,7 +27,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeHold
      */
     @Override
     public void onBindViewHolder(@NonNull RecipeHolder holder, int position) {
-        Recipe recipe = recipesToDisplay.get(position);
+        RecipeCalculation recipe = recipesToDisplay.get(position);
         holder.bind(recipe);
     }
 
@@ -67,12 +64,12 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeHold
         }
 
         //méthode d'association de la vue et des valeurs d'un élément + définition des actions des bouton si besoin
-        public void bind(final Recipe recipe) {
-            viewElements.txtProductionRate.setText(String.valueOf(recipe.getRateByMinute()));
-            viewElements.txtConsumptionRate.setText(String.valueOf(recipe.getRateByMinute()));
-            viewElements.txtFacilityType.setText(recipe.getFacilityType());
-            viewElements.txtFacilityNeeded.setText(String.valueOf(recipe.getId()));
-            viewElements.imgRecipe.setImageResource(recipe.getImageId());
+        public void bind(final RecipeCalculation recipe) {
+            viewElements.txtProductionRate.setText(String.valueOf(recipe.getProductionRate()));
+            viewElements.txtConsumptionRate.setText(String.valueOf(recipe.getConsumptionAsked()));
+            viewElements.txtFacilityType.setText(recipe.getRecipe().getFacilityType());
+            viewElements.txtFacilityNeeded.setText(String.valueOf(recipe.getFacilityCount()));
+            viewElements.imgRecipe.setImageResource(recipe.getRecipe().getImageId());
             //viewElements.executePendingBindings();
         }
     }

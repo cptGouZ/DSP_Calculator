@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dsp.calculator.App;
+import dsp.calculator.enums.FacilityTypes;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,7 +19,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Recipe {
+public class Recipe implements Comparable<Recipe> {
     @PrimaryKey(autoGenerate = true)
     private long id;
     private String name;
@@ -35,11 +36,30 @@ public class Recipe {
         this.consumptions = consumptions;
         this.pictureAltName = pictureAltName;
     }
+
+    public float getRateByMinute(){
+        float ratioProd = 100;
+        if(FacilityTypes.ASSEMBLER.equals(facilityType)){
+            ratioProd = App.getInstance().getSettings().getAssemblerRatio();
+        }
+        if(FacilityTypes.SMELTER.equals(facilityType)){
+            ratioProd = App.getInstance().getSettings().getSmelterRatio();
+        }
+        return rateByMinute * ratioProd / 100;
+    }
+
     public int getImageId() {
         Context c = App.getContext();
         return c.getResources().getIdentifier(
                 getPictureAltName(),
                 "mipmap",
                 c.getPackageName());
+    }
+
+    @Override
+    public int compareTo(Recipe recipe) {
+        if(recipe.id > this.id) return 1;
+        if(recipe.id < this.id) return -1;
+        return 0;
     }
 }

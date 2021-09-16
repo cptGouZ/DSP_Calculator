@@ -2,7 +2,6 @@ package dsp.calculator.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -12,25 +11,31 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 
+import dsp.calculator.Datas;
 import dsp.calculator.R;
 import dsp.calculator.adapter.RecipeAdapter;
 import dsp.calculator.adapter.SpinnerItemAdapter;
 import dsp.calculator.App;
+import dsp.calculator.bo.Recipe;
 import dsp.calculator.databinding.ActivityMainBinding;
-import dsp.calculator.enums.RecipeNames;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     private RecipeAdapter recipeAdapter = new RecipeAdapter();
+    private SpinnerItemAdapter spinnerArrayAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        recipeAdapter.setRecipesToDisplay(App.getInstance().getRecipes());
+
+        recipeAdapter.setRecipesToDisplay(App.getInstance().getResults());
         binding.recipeListe.setLayoutManager(new LinearLayoutManager(this));
         binding.recipeListe.setAdapter(recipeAdapter);
-        setBindings();
+
+        binding.cmbRecipe.setPrompt("Recipe to make ?");
+        setRecipeListe();
         setActions();
     }
 
@@ -52,24 +57,46 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void setBindings(){
-
-        SpinnerItemAdapter spinnerArrayAdapter = new SpinnerItemAdapter(
+    private void setRecipeListe(){
+        spinnerArrayAdapter = new SpinnerItemAdapter(
                 this,
                 android.R.layout.simple_spinner_dropdown_item,
-                App.getInstance().getRecipes()
+                Datas.getInstance().getAll()
         );
         spinnerArrayAdapter.setDropDownViewResource(R.layout.recipe_spinner_dropdown_layout);
         binding.cmbRecipe.setAdapter(spinnerArrayAdapter);
-        binding.cmbRecipe.setPrompt("Recipe to make ?");
     }
 
     private void setActions(){
         binding.btnSubmit.setOnClickListener((view)->{
-            Log.i("TAG", "setActions: JE NE PASSE PAS" + String.valueOf( App.getInstance().calcul(RecipeNames.ANNIHILATION_CONSTRAINT_SPHERE, 0.2f)) );
-            //String recipeToMake = binding.cmbRecipe.getSelectedItem().toString();
-            //float wantedRate = Float.parseFloat(String.valueOf(binding.txtWantedRate.getText()));
-            Toast.makeText(this, "J'ai appuié", Toast.LENGTH_SHORT).show();
+            Recipe r = (Recipe)binding.cmbRecipe.getSelectedItem();
+            String f = String.valueOf(binding.txtWantedRate.getText());
+            if( r != null && !f.isEmpty()) {
+                float rate = Float.parseFloat(f);
+                App.getInstance().addRecipeToMake(r, rate);
+                recipeAdapter.setRecipesToDisplay(App.getInstance().getResults());
+            }else{
+                Toast.makeText(this,"A recipe must be choosen and a wanted rate set", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        binding.btnRemove.setOnClickListener((view)->{
+            Recipe r = (Recipe)binding.cmbRecipe.getSelectedItem();
+            String f = String.valueOf(binding.txtWantedRate.getText());
+            Toast.makeText(this,String.valueOf(binding.txtWantedRate.getText()), Toast.LENGTH_SHORT);
+
+            if( r != null && !f.isEmpty()) {
+                float rate = Float.parseFloat(f);
+                App.getInstance().removeRecipeToMake(r, rate);
+                recipeAdapter.setRecipesToDisplay(App.getInstance().getResults());
+            }else{
+                Toast.makeText(this,"A recipe must be choosen and a wanted rate set", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        binding.btnClear.setOnClickListener((view)->{
+            App.getInstance().clearRecipeToMake();
+            recipeAdapter.setRecipesToDisplay(App.getInstance().getResults());
         });
     }
 }

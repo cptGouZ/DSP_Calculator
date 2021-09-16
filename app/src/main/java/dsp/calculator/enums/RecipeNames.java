@@ -2,7 +2,7 @@ package dsp.calculator.enums;
 
 public interface RecipeNames {
     String IRON_ORE = "iron ore";
-    String COPPER_ORE = "copper ingot";
+    String COPPER_ORE = "copper ore";
     String STONE = "stone";
     String COAL = "coal";
     String SILICON_ORE = "silicon ore";
