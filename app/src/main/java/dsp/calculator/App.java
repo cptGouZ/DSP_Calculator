@@ -97,6 +97,7 @@ public class App extends Application {
             Recipe recipeInConsumption = null;
             List<Recipe> resultDao = Datas.getInstance().getByName(c.getConsumedRecipeName());
             if (resultDao.size()>0) {
+
                 recipeInConsumption = resultDao.get(0);
 
                 float rateOrRecipeInConsumption = recipeCalculation.getConsumptionAsked() * c.getRate();
