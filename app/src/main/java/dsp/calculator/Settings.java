@@ -1,12 +1,9 @@
 package dsp.calculator;
 
-import static android.content.Context.MODE_PRIVATE;
-import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 
-import dsp.calculator.R;
-import dsp.calculator.databinding.ActivitySettingsBinding;
+import dsp.calculator.bo.Recipe;
+import dsp.calculator.enums.CalculMode;
 
 public class Settings {
     public static final String FILE_SETTINGS = "settings";
@@ -17,45 +14,38 @@ public class Settings {
     public static final int ASSEMBLEUR_MK3 = 150;
     public static final int SMELTER_MK1 = 100;
     public static final int SMELTER_MK2 = 200;
+    public static final String CALCUL_MODE = "calcul_mode";
 
-    private Context context;
-    private int assemblerRatio;
-    private int smelterRatio;
+    private SharedPreferences sp;
 
-    private ActivitySettingsBinding binding;
-
-    Settings(Context context){
-        this.context = context;
+    Settings(SharedPreferences sharedPreferences){
+        this.sp = sharedPreferences;
     }
 
     public int getAssemblerRatio() {
-        int value = context.getSharedPreferences(FILE_SETTINGS, MODE_PRIVATE).getInt(KEY_ASSEMBLEUR_RATIO, 0);
-        if(assemblerRatio == 0)
+        int value = sp.getInt(KEY_ASSEMBLEUR_RATIO, 0);
+        if(value == 0)
             value = ASSEMBLEUR_MK1;
         return value;
     }
 
     private void setAssemblerRatio(int assemblerRatio) {
-         context.getSharedPreferences(FILE_SETTINGS, MODE_PRIVATE)
-                .edit()
-                .putInt(KEY_ASSEMBLEUR_RATIO, assemblerRatio)
-                .apply();
-        this.assemblerRatio = assemblerRatio;
+        sp.edit()
+            .putInt(KEY_ASSEMBLEUR_RATIO, assemblerRatio)
+            .apply();
     }
 
     public int getSmelterRatio() {
-        int value = context.getSharedPreferences(FILE_SETTINGS, MODE_PRIVATE).getInt(KEY_SMELTER_RATIO, 0);
-        if(smelterRatio == 0)
+        int value = sp.getInt(KEY_SMELTER_RATIO, 0);
+        if(value == 0)
             value = SMELTER_MK1;
         return value;
     }
 
     private void setSmelterRatio(int smelterRatio) {
-        context.getSharedPreferences(FILE_SETTINGS, MODE_PRIVATE)
-                .edit()
-                .putInt(KEY_SMELTER_RATIO, smelterRatio)
-                .apply();
-        this.smelterRatio = smelterRatio;
+        sp.edit()
+            .putInt(KEY_SMELTER_RATIO, smelterRatio)
+            .apply();
     }
 
     public void save(int selectedAssembler, int selectedSmelter ){
@@ -69,5 +59,27 @@ public class Settings {
             case R.id.optionSmelterMk1: setSmelterRatio(SMELTER_MK1); break;
             case R.id.optionSmelterMk2: setSmelterRatio(SMELTER_MK2); break;
         }
+    }
+
+    public void setAlternative(Recipe r){
+        sp.edit()
+            .putLong(r.getName(), r.getId())
+            .apply();
+    }
+    public Long getAlternative(String recipeName){
+        Long value = sp.getLong(recipeName, 0);
+        if(value == 0)
+            value = Datas.get().getByName(recipeName).get(0).getId();
+        return value;
+    }
+
+    public int getCalculMode(){
+        return sp.getInt(CALCUL_MODE,0);
+    }
+
+    public void setCalculMode(int mode){
+        sp.edit()
+            .putInt(CALCUL_MODE, mode)
+            .apply();
     }
 }

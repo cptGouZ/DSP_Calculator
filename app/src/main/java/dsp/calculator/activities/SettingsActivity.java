@@ -28,7 +28,7 @@ public class SettingsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
+        setContentView(R.layout.settings);
         getViewMembers();
         setActions();
     }
@@ -38,14 +38,14 @@ public class SettingsActivity extends AppCompatActivity {
         super.onStart();
 
         //Sélection du radio lié à la valeur
-        switch(App.getInstance().getSettings().getAssemblerRatio()){
+        switch(App.get().getSettings().getAssemblerRatio()){
             case ASSEMBLEUR_MK1: optAssemblerMk1.setChecked(true); break;
             case ASSEMBLEUR_MK2: optAssemblerMk2.setChecked(true); break;
             case ASSEMBLEUR_MK3: optAssemblerMk3.setChecked(true); break;
         }
 
         //Sélection du radio lié à la valeur
-        switch(App.getInstance().getSettings().getSmelterRatio()){
+        switch(App.get().getSettings().getSmelterRatio()){
             case SMELTER_MK1: optSmelterMk1.setChecked(true); break;
             case SMELTER_MK2: optSmelterMk2.setChecked(true); break;
         }
@@ -73,7 +73,7 @@ public class SettingsActivity extends AppCompatActivity {
      */
     private void setActions(){
         btnSave.setOnClickListener((view)-> {
-                App.getInstance().getSettings().save(
+                App.get().getSettings().save(
                         optGroupAssembleur.getCheckedRadioButtonId(),
                         optGroupSmelter.getCheckedRadioButtonId()
                 );

@@ -1,15 +1,11 @@
 package dsp.calculator.activities;
 
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.DialogInterface;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Message;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -17,30 +13,29 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 
-import java.util.concurrent.atomic.AtomicInteger;
-
 import dsp.calculator.Datas;
 import dsp.calculator.R;
-import dsp.calculator.adapter.RecipeAdapter;
-import dsp.calculator.adapter.SpinnerItemAdapter;
+import dsp.calculator.adapters.RecipeResultAdapter;
+import dsp.calculator.adapters.RecipeDropdownAdapter;
 import dsp.calculator.App;
 import dsp.calculator.bo.Recipe;
-import dsp.calculator.databinding.ActivityMainBinding;
+import dsp.calculator.databinding.MainBinding;
+import dsp.calculator.enums.CalculMode;
 
 public class MainActivity extends AppCompatActivity {
-    private ActivityMainBinding binding;
-    private RecipeAdapter recipeAdapter = new RecipeAdapter();
-    private SpinnerItemAdapter spinnerArrayAdapter;
+    private MainBinding binding;
+    private RecipeResultAdapter recipeResultAdapter = new RecipeResultAdapter();
+    private RecipeDropdownAdapter spinnerArrayAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        binding = MainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        recipeAdapter.setRecipesToDisplay(App.getInstance().getResults());
+        recipeResultAdapter.setRecipesToDisplay(App.get().getResults());
         binding.recipeListe.setLayoutManager(new LinearLayoutManager(this));
-        binding.recipeListe.setAdapter(recipeAdapter);
+        binding.recipeListe.setAdapter(recipeResultAdapter);
 
         binding.cmbRecipe.setPrompt("Recipe to make ?");
         setRecipeListe();
@@ -59,74 +54,44 @@ public class MainActivity extends AppCompatActivity {
             case R.id.menuSettings:
                 startActivity(new Intent(this, SettingsActivity.class));
                 return true;
+            case R.id.menuAternatives:
+                startActivity(new Intent(this, AlternativeActivity.class));
             default :
                 return super.onOptionsItemSelected(item);
         }
     }
 
-
     private void setRecipeListe(){
-        spinnerArrayAdapter = new SpinnerItemAdapter(
+        spinnerArrayAdapter = new RecipeDropdownAdapter(
                 this,
                 android.R.layout.simple_spinner_dropdown_item,
-                Datas.getInstance().getAll()
+                Datas.get().getAll()
         );
-        spinnerArrayAdapter.setDropDownViewResource(R.layout.recipe_spinner_dropdown_layout);
+        spinnerArrayAdapter.setDropDownViewResource(R.layout.recipe_dropdown_item);
         binding.cmbRecipe.setAdapter(spinnerArrayAdapter);
     }
 
-
-    private final Object lock = new Object();
-    private volatile boolean isEnabled = true;
     private void setActions(){
+        binding.radNbOfFacility.setOnClickListener(view -> {
+            App.get().getSettings().setCalculMode(CalculMode.NB_FACILITY);
+        });
+        binding.radRatePerMin.setOnClickListener(view -> {
+            App.get().getSettings().setCalculMode(CalculMode.RATE_BY_MIN);
+        });
+
         binding.btnSubmit.setOnClickListener((view)->{
 
-            //region test
-
-
-            Thread thread = new Thread(()->{
-                runOnUiThread(new Runnable() {
-                    @Override public void run () {
-                        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                        builder.setPositiveButton("Continue", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                synchronized (lock) {
-                                    lock.notify();
-                                }
-                            }
-                        });
-                        builder.show();
-                    }
-                });
-
-            synchronized (lock)
-
-            {
-                try {
-                    Log.e("sample", "work stopped. Waiting for dialog click.");
-                    lock.wait();
-                } catch (InterruptedException e) {
-                    //
-                }
-                Recipe r = (Recipe)binding.cmbRecipe.getSelectedItem();
-                String f = String.valueOf(binding.txtWantedRate.getText());
-                if( r != null && !f.isEmpty()) {
-                    float rate = Float.parseFloat(f);
-                    App.getInstance().addRecipeToMake(r, rate);
-                    recipeAdapter.setRecipesToDisplay(App.getInstance().getResults());
-                }else{
-                    Toast.makeText(this,"A recipe must be choosen and a wanted rate set", Toast.LENGTH_SHORT).show();
-                }
-                Log.i("TAG", "setActions: 1");
+            Recipe r = (Recipe)binding.cmbRecipe.getSelectedItem();
+            String f = String.valueOf(binding.txtWantedRate.getText());
+            if( r != null && !f.isEmpty()) {
+                float rate = Float.parseFloat(f);
+                App.get().addRecipeToMake(r, rate);
+                recipeResultAdapter.setRecipesToDisplay(App.get().getResults());
+            }else{
+                Toast.makeText(this,"A recipe must be choosen and a wanted rate set", Toast.LENGTH_SHORT).show();
             }
-
-            });
-            thread.start();
-
-            //endregion test
-
-
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(),0);
         });
 
         binding.btnRemove.setOnClickListener((view)->{
@@ -136,16 +101,18 @@ public class MainActivity extends AppCompatActivity {
 
             if( r != null && !f.isEmpty()) {
                 float rate = Float.parseFloat(f);
-                App.getInstance().removeRecipeToMake(r, rate);
-                recipeAdapter.setRecipesToDisplay(App.getInstance().getResults());
+                App.get().removeRecipeToMake(r, rate);
+                recipeResultAdapter.setRecipesToDisplay(App.get().getResults());
             }else{
                 Toast.makeText(this,"A recipe must be choosen and a wanted rate set", Toast.LENGTH_SHORT).show();
             }
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(),0);
         });
 
         binding.btnClear.setOnClickListener((view)->{
-            App.getInstance().clearRecipeToMake();
-            recipeAdapter.setRecipesToDisplay(App.getInstance().getResults());
+            App.get().clearRecipeToMake();
+            recipeResultAdapter.setRecipesToDisplay(App.get().getResults());
         });
     }
 }

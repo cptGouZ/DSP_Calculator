@@ -40,10 +40,10 @@ public class Recipe implements Comparable<Recipe> {
     public float getRateByMinute(){
         float ratioProd = 100;
         if(FacilityTypes.ASSEMBLER.equals(facilityType)){
-            ratioProd = App.getInstance().getSettings().getAssemblerRatio();
+            ratioProd = App.get().getSettings().getAssemblerRatio();
         }
         if(FacilityTypes.SMELTER.equals(facilityType)){
-            ratioProd = App.getInstance().getSettings().getSmelterRatio();
+            ratioProd = App.get().getSettings().getSmelterRatio();
         }
         return rateByMinute * ratioProd / 100;
     }
@@ -54,6 +54,19 @@ public class Recipe implements Comparable<Recipe> {
                 getPictureAltName(),
                 "mipmap",
                 c.getPackageName());
+    }
+
+    public String getConsumptionDetails(){
+        StringBuilder sb = new StringBuilder();
+        for (Consumption c : consumptions) {
+            if(sb.length()!=0)
+                sb.append("\n");
+            sb.append("It needs " + c.getRate() + " " + c.getConsumedRecipeName() + " to make 1 item");
+        }
+        if(sb.length()!=0)
+            sb.append("\n");
+        sb.append("Made in " + facilityType);
+        return sb.toString();
     }
 
     @Override

@@ -13,6 +13,7 @@ import java.util.Map;
 import dsp.calculator.bo.Consumption;
 import dsp.calculator.bo.Recipe;
 import dsp.calculator.bo.RecipeCalculation;
+import dsp.calculator.enums.CalculMode;
 import lombok.Data;
 
 @Data
@@ -22,16 +23,17 @@ public class App extends Application {
 
     private Settings settings;
     private Map<Long, RecipeCalculation> listeOfRecipeToMake = new HashMap<>();
+    private Recipe recipeInConsumption;
 
 
     @Override
     public void onCreate() {
         instance = this;
-        instance.setSettings( new Settings(this) );
+        instance.setSettings( new Settings(this.getSharedPreferences(Settings.FILE_SETTINGS, MODE_PRIVATE)) );
         super.onCreate();
     }
 
-    public static App getInstance() {
+    public static App get() {
         return instance;
     }
 
@@ -45,6 +47,9 @@ public class App extends Application {
 
     public void removeRecipeToMake(Recipe recipe, float rate) {
         long recipeId = recipe.getId();
+        if (App.get().getSettings().getCalculMode() == CalculMode.NB_FACILITY){
+            rate = recipe.getRateByMinute() * rate;
+        }
         if (listeOfRecipeToMake.containsKey(recipeId)){
             float oldConsumptionAsked = listeOfRecipeToMake.get(recipeId).getConsumptionAsked();
             float newConsumptionAsked = oldConsumptionAsked - rate;
@@ -60,6 +65,9 @@ public class App extends Application {
 
     public void addRecipeToMake(Recipe recipe, float rate){
         long recipeId = recipe.getId();
+        if (App.get().getSettings().getCalculMode() == CalculMode.NB_FACILITY){
+            rate = recipe.getRateByMinute() * rate;
+        }
         if ( !listeOfRecipeToMake.containsKey(recipeId) ) {
             listeOfRecipeToMake.put(recipeId, new RecipeCalculation(recipe, 0));
         }
@@ -70,14 +78,10 @@ public class App extends Application {
 
     public List<RecipeCalculation> getResults(){
         HashMap<Long, RecipeCalculation> mixture = new HashMap<>();
-
-
         for (Map.Entry lorc: listeOfRecipeToMake.entrySet()) {
             RecipeCalculation recipeCalculation = (RecipeCalculation)lorc.getValue();
             calculLevel(recipeCalculation, mixture);
         }
-
-
         List<RecipeCalculation> retour = new ArrayList<>(mixture.values());
         return retour;
     }
@@ -94,12 +98,13 @@ public class App extends Application {
 
             Log.i("TAG", "calculLevel: "+c.getConsumedRecipeName());
 
-            Recipe recipeInConsumption = null;
-            List<Recipe> resultDao = Datas.getInstance().getByName(c.getConsumedRecipeName());
+            recipeInConsumption = null;
+            List<Recipe> resultDao = Datas.get().getByName(c.getConsumedRecipeName());
             if (resultDao.size()>0) {
-
                 recipeInConsumption = resultDao.get(0);
-
+                if(resultDao.size()>1){
+                    recipeInConsumption = Datas.get().getById(App.get().getSettings().getAlternative(c.getConsumedRecipeName()));
+                }
                 float rateOrRecipeInConsumption = recipeCalculation.getConsumptionAsked() * c.getRate();
                 RecipeCalculation recursive = new RecipeCalculation(recipeInConsumption, rateOrRecipeInConsumption);
                 calculLevel(recursive, mixture);

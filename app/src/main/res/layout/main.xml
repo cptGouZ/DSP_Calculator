@@ -8,26 +8,26 @@
 
     <Spinner
         android:id="@+id/cmbRecipe"
-        android:layout_width="255dp"
+        android:layout_width="0dp"
         android:layout_height="59dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:spinnerMode="dropdown"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/txtWantedRate"
-        android:layout_width="79dp"
-        android:layout_height="61dp"
-        android:layout_marginEnd="8dp"
+        android:layout_width="116dp"
+        android:layout_height="60dp"
         android:ems="10"
-        android:hint="qte/min"
+        android:hint="qte"
         android:inputType="number"
-        app:layout_constraintBottom_toBottomOf="@+id/cmbRecipe"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/cmbRecipe"
-        app:layout_constraintTop_toTopOf="@+id/cmbRecipe" />
+        app:layout_constraintBottom_toTopOf="@+id/radioGroup"
+        app:layout_constraintStart_toStartOf="@+id/cmbRecipe"
+        app:layout_constraintTop_toBottomOf="@+id/cmbRecipe" />
 
     <FrameLayout
         android:id="@+id/frameLayout"
@@ -50,40 +50,64 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="162dp" />
+        app:layout_constraintGuide_begin="201dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnSubmit"
         android:layout_width="57dp"
         android:layout_height="58dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginStart="16dp"
         android:background="@color/white"
         android:src="@android:drawable/ic_input_add"
-        app:layout_constraintBottom_toTopOf="@+id/frameLayout"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/btnRemove"
+        app:layout_constraintStart_toEndOf="@+id/btnRemove"
+        app:layout_constraintTop_toTopOf="@+id/btnRemove" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnRemove"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
         android:clickable="true"
         app:backgroundTint="#F44336"
-        app:layout_constraintBottom_toBottomOf="@+id/btnSubmit"
-        app:layout_constraintEnd_toStartOf="@+id/btnSubmit"
-        app:layout_constraintTop_toTopOf="@+id/btnSubmit"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintBottom_toBottomOf="@+id/txtWantedRate"
+        app:layout_constraintStart_toEndOf="@+id/txtWantedRate"
+        app:layout_constraintTop_toTopOf="@+id/txtWantedRate"
+        app:layout_constraintVertical_bias="0.4"
         app:srcCompat="@drawable/ic_baseline_remove_24" />
 
     <Button
         android:id="@+id/btnClear"
+        android:layout_width="89dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="16dp"
+        android:text="Clear"
+        app:layout_constraintBottom_toBottomOf="@+id/btnSubmit"
+        app:layout_constraintStart_toEndOf="@+id/btnSubmit"
+        app:layout_constraintTop_toTopOf="@+id/btnSubmit" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="Clear"
-        app:layout_constraintBottom_toBottomOf="@+id/btnRemove"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/btnRemove" />
+        android:layout_marginBottom="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <RadioButton
+            android:id="@+id/radNbOfFacility"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nb of facilities" />
+
+        <RadioButton
+            android:id="@+id/radRatePerMin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:enabled="true"
+            android:text="Rate per min" />
+    </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

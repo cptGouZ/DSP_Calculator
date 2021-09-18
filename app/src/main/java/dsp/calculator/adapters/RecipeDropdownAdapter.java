@@ -1,4 +1,4 @@
-package dsp.calculator.adapter;
+package dsp.calculator.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,13 +10,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import java.util.List;
 import dsp.calculator.bo.Recipe;
-import dsp.calculator.databinding.RecipeSpinnerDropdownLayoutBinding;
+import dsp.calculator.databinding.RecipeDropdownItemBinding;
 
-public class SpinnerItemAdapter extends ArrayAdapter<Recipe> {
+public class RecipeDropdownAdapter extends ArrayAdapter<Recipe> {
 
-    private RecipeSpinnerDropdownLayoutBinding recipeView;
+    private RecipeDropdownItemBinding recipeView;
 
-    public SpinnerItemAdapter(Context context, int layoutId, List<Recipe> itemList){
+    public RecipeDropdownAdapter(Context context, int layoutId, List<Recipe> itemList){
         super(context, layoutId, itemList);
     }
 
@@ -34,7 +34,7 @@ public class SpinnerItemAdapter extends ArrayAdapter<Recipe> {
     @Override
     public View getDropDownView(int position, View convertView, ViewGroup parent) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        recipeView = RecipeSpinnerDropdownLayoutBinding.inflate(
+        recipeView = RecipeDropdownItemBinding.inflate(
                 layoutInflater, parent, false);
         Recipe recipe = getItem(position);
         recipeView.imageView.setImageResource(recipe.getImageId());

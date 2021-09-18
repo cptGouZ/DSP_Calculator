@@ -1,6 +1,5 @@
-package dsp.calculator.adapter;
+package dsp.calculator.adapters;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -10,11 +9,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-import dsp.calculator.bo.Recipe;
 import dsp.calculator.bo.RecipeCalculation;
-import dsp.calculator.databinding.RecipeLayoutBinding;
+import dsp.calculator.databinding.RecipeResultItemBinding;
 
-public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeHolder> {
+public class RecipeResultAdapter extends RecyclerView.Adapter<RecipeResultAdapter.RecipeHolder> {
     List<RecipeCalculation> recipesToDisplay = new ArrayList<>();
 
     public void setRecipesToDisplay(List<RecipeCalculation> recipesToDisplay) {
@@ -44,7 +42,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeHold
     @Override
     public RecipeHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType){
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        RecipeLayoutBinding recipeView = RecipeLayoutBinding.inflate(
+        RecipeResultItemBinding recipeView = RecipeResultItemBinding.inflate(
                 layoutInflater, parent, false);
         return new RecipeHolder(recipeView);
     }
@@ -55,8 +53,8 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeHold
      * et qui sera ensuite affiché à l'écran
      */
     protected static class RecipeHolder extends RecyclerView.ViewHolder {
-        RecipeLayoutBinding viewElements;
-        public RecipeHolder(@NonNull RecipeLayoutBinding itemView){
+        RecipeResultItemBinding viewElements;
+        public RecipeHolder(@NonNull RecipeResultItemBinding itemView){
             //Récupération de la vue du binding fourni et transmission de la vue au constructeur parent
             super(itemView.getRoot());
             //On récupère le binding dans la classe
@@ -70,7 +68,6 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeHold
             viewElements.txtFacilityType.setText(recipe.getRecipe().getFacilityType());
             viewElements.txtFacilityNeeded.setText(String.valueOf(recipe.getFacilityCount()));
             viewElements.imgRecipe.setImageResource(recipe.getRecipe().getImageId());
-            //viewElements.executePendingBindings();
         }
     }
 }
