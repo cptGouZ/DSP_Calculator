@@ -18,8 +18,8 @@
 
             <TableLayout
                 android:id="@+id/tableLayout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -30,37 +30,28 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                    <ImageView
+                        android:id="@+id/imgAlt1"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        tools:srcCompat="@tools:sample/avatars"
+                        android:layout_weight="0" />
 
-                        <Switch
-                            android:id="@+id/switchAlt1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:layout_constraintBottom_toBottomOf="@+id/imgAlt1"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/imgAlt1" />
+                    <TextView
+                        android:id="@+id/txtAlt1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="TextView"
+                        android:layout_weight="1" />
 
-                        <ImageView
-                            android:id="@+id/imgAlt1"
-                            android:layout_width="60dp"
-                            android:layout_height="60dp"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            tools:srcCompat="@tools:sample/avatars" />
-
-                        <TextView
-                            android:id="@+id/txtAlt1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:text="TextView"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/imgAlt1"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_bias="0.512" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+                    <Switch
+                        android:id="@+id/switchAlt1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="1dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_weight="0" />
 
                 </TableRow>
 
@@ -69,39 +60,28 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="400dp"
-                        android:layout_height="match_parent">
+                    <ImageView
+                        android:id="@+id/imgAlt2"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        tools:srcCompat="@tools:sample/avatars"
+                        android:layout_weight="0" />
 
-                        <Switch
-                            android:id="@+id/switchAlt2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:layout_constraintBottom_toBottomOf="@+id/imgAlt2"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/imgAlt2"
-                            app:layout_constraintVertical_bias="0.515" />
+                    <TextView
+                        android:id="@+id/txtAlt2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="TextView"
+                        android:layout_weight="1"/>
 
-                        <ImageView
-                            android:id="@+id/imgAlt2"
-                            android:layout_width="60dp"
-                            android:layout_height="60dp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            tools:srcCompat="@tools:sample/avatars" />
-
-                        <TextView
-                            android:id="@+id/txtAlt2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:text="TextView"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/imgAlt2"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_bias="0.512" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+                    <Switch
+                        android:id="@+id/switchAlt2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="1dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_weight="0" />
 
                 </TableRow>
 
@@ -110,37 +90,28 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                    <ImageView
+                        android:id="@+id/imgAlt3"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        tools:srcCompat="@tools:sample/avatars"
+                        android:layout_weight="0" />
 
-                        <Switch
-                            android:id="@+id/switchAlt3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:layout_constraintBottom_toBottomOf="@+id/imgAlt3"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/imgAlt3" />
+                    <TextView
+                        android:id="@+id/txtAlt3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="TextView"
+                        android:layout_weight="1"/>
 
-                        <ImageView
-                            android:id="@+id/imgAlt3"
-                            android:layout_width="60dp"
-                            android:layout_height="60dp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            tools:srcCompat="@tools:sample/avatars" />
-
-                        <TextView
-                            android:id="@+id/txtAlt3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:text="TextView"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/imgAlt3"
-                            app:layout_constraintTop_toTopOf="parent" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+                    <Switch
+                        android:id="@+id/switchAlt3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="1dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_weight="0" />
 
                 </TableRow>
             </TableLayout>

@@ -61,7 +61,7 @@ public class Recipe implements Comparable<Recipe> {
         for (Consumption c : consumptions) {
             if(sb.length()!=0)
                 sb.append("\n");
-            sb.append("It needs " + c.getRate() + " " + c.getConsumedRecipeName() + " to make 1 item");
+            sb.append("needs " + c.getRate() + " " + c.getConsumedRecipeName());
         }
         if(sb.length()!=0)
             sb.append("\n");

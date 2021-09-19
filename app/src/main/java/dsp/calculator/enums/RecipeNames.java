@@ -77,4 +77,6 @@ public interface RecipeNames {
     String FRAME_MATERIAL = "frame material";
     String DYSON_SPHERE_COMPONENT = "dyson sphere component";
     String SMALL_CARRIER_ROCKET = "small carrier rocket";
+    String WOOD = "wood";
+    String PLANT_FUEL = "plant fuel";
 }

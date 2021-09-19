@@ -149,6 +149,11 @@ public class Datas {
         r = constructRecipe(RecipeNames.CRITICAL_PHOTON, FacilityTypes.MINING_MACHINE, 1000000f, "critical_photon_alt1", consumedRecipes);
         datas.add(r);
 
+//CRUDE_OIL
+        consumedRecipes = new HashMap<>();
+        r = constructRecipe(RecipeNames.CRUDE_OIL, FacilityTypes.OIL_EXTRACTOR , 1000000f, "crude_oil_alt1", consumedRecipes);
+        datas.add(r);
+
 //CRYSTAL_SILICON
         consumedRecipes = new HashMap<>();
         consumedRecipes.put(RecipeNames.FRACTAL_SILICON, 0.5f);
@@ -243,11 +248,21 @@ public class Datas {
         r = constructRecipe(RecipeNames.ENERGY_MATRIX, FacilityTypes.MATRIX_LAB, 10f, "energy_matrix_alt1", consumedRecipes);
         datas.add(r);
 
+//FIRE_ICE
+        consumedRecipes = new HashMap<>();
+        r = constructRecipe(RecipeNames.FIRE_ICE, FacilityTypes.MINING_MACHINE, 1000000f, "fire_ice_alt1", consumedRecipes);
+        datas.add(r);
+
 //FOUNDATION
         consumedRecipes = new HashMap<>();
         consumedRecipes.put(RecipeNames.STONE_BRICK, 3f);
         consumedRecipes.put(RecipeNames.STEEL, 1f);
         r = constructRecipe(RecipeNames.FOUNDATION, FacilityTypes.ASSEMBLER, 60f, "foundation_alt1", consumedRecipes);
+        datas.add(r);
+
+//FRACTAL_SILICON
+        consumedRecipes = new HashMap<>();
+        r = constructRecipe(RecipeNames.FRACTAL_SILICON, FacilityTypes.MINING_MACHINE, 1000000f, "fractal_silicon_alt1", consumedRecipes);
         datas.add(r);
 
 //FRAME_MATERIAL
@@ -303,6 +318,11 @@ public class Datas {
         r = constructRecipe(RecipeNames.HIGH_PURITY_SILICON, FacilityTypes.SMELTER, 30f, "high_purity_silicon_alt1", consumedRecipes);
         datas.add(r);
 
+//HYDROGEN
+        consumedRecipes = new HashMap<>();
+        r = constructRecipe(RecipeNames.HYDROGEN, FacilityTypes.OIL_EXTRACTOR , 1000000f, "hydrogen_alt1", consumedRecipes);
+        datas.add(r);
+
 //HYDROGEN_FUEL_ROD
         consumedRecipes = new HashMap<>();
         consumedRecipes.put(RecipeNames.TITANIUM_INGOT, 0.5f);
@@ -326,6 +346,11 @@ public class Datas {
 //IRON_ORE
         consumedRecipes = new HashMap<>();
         r = constructRecipe(RecipeNames.IRON_ORE, FacilityTypes.MINING_MACHINE, 1000000f, "iron_ore_alt1", consumedRecipes);
+        datas.add(r);
+
+//KIMBERLITE_ORE
+        consumedRecipes = new HashMap<>();
+        r = constructRecipe(RecipeNames.KIMBERLITE_ORE, FacilityTypes.MINING_MACHINE, 1000000f, "kimberlite_ore_alt1", consumedRecipes);
         datas.add(r);
 
 //LOGISTICS_DRONE
@@ -367,6 +392,11 @@ public class Datas {
 //OPTICAL_GRATING_CRYSTAL
         consumedRecipes = new HashMap<>();
         r = constructRecipe(RecipeNames.OPTICAL_GRATING_CRYSTAL, FacilityTypes.MINING_MACHINE, 1000000f, "optical_grating_crystal_alt1", consumedRecipes);
+        datas.add(r);
+
+//ORGANIC_CRYSTAL
+        consumedRecipes = new HashMap<>();
+        r = constructRecipe(RecipeNames.ORGANIC_CRYSTAL, FacilityTypes.MINING_MACHINE, 1000000f, "organic_crystal_alt1", consumedRecipes);
         datas.add(r);
 
 //ORGANIC_CRYSTAL
@@ -419,6 +449,11 @@ public class Datas {
         consumedRecipes.put(RecipeNames.CASIMIR_CRYSTAL, 1f);
         consumedRecipes.put(RecipeNames.TITANIUM_GLASS, 2f);
         r = constructRecipe(RecipeNames.PLANE_FILTER, FacilityTypes.ASSEMBLER, 5f, "plane_filter_alt1", consumedRecipes);
+        datas.add(r);
+
+//PLANT_FUEL
+        consumedRecipes = new HashMap<>();
+        r = constructRecipe(RecipeNames.PLANT_FUEL, FacilityTypes.MINING_MACHINE, 1000000f, "plant_fuel_alt1", consumedRecipes);
         datas.add(r);
 
 //PLASMA_EXCITER
@@ -594,6 +629,16 @@ public class Datas {
         r = constructRecipe(RecipeNames.TITANIUM_INGOT, FacilityTypes.SMELTER, 30f, "titanium_ingot_alt1", consumedRecipes);
         datas.add(r);
 
+//TITANIUM_ORE
+        consumedRecipes = new HashMap<>();
+        r = constructRecipe(RecipeNames.TITANIUM_ORE, FacilityTypes.MINING_MACHINE, 1000000f, "titanium_ore_alt1", consumedRecipes);
+        datas.add(r);
+
+//UNIPOLAR_MAGNET
+        consumedRecipes = new HashMap<>();
+        r = constructRecipe(RecipeNames.UNIPOLAR_MAGNET, FacilityTypes.MINING_MACHINE, 1000000f, "unipolar_magnet_alt1", consumedRecipes);
+        datas.add(r);
+
 //UNIVERSE_MATRIX
         consumedRecipes = new HashMap<>();
         consumedRecipes.put(RecipeNames.ELECTROMAGNETIC_MATRIX, 1f);
@@ -608,6 +653,11 @@ public class Datas {
 //WATER
         consumedRecipes = new HashMap<>();
         r = constructRecipe(RecipeNames.WATER, FacilityTypes.WATER_POMPE, 1000000f, "water_alt1", consumedRecipes);
+        datas.add(r);
+
+//WOOD
+        consumedRecipes = new HashMap<>();
+        r = constructRecipe(RecipeNames.WOOD, FacilityTypes.MINING_MACHINE, 1000000f, "wood_alt1", consumedRecipes);
         datas.add(r);
     }
 
