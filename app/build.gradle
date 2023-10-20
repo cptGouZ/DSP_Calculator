@@ -5,7 +5,7 @@ plugins {
 android {
     signingConfigs {
         debug {
-            storeFile file('X:\\Programmation\\KeyStore\\dsp_key_store.jks')
+            storeFile file('Z:\\Programmation\\KeyStore\\dsp_key_store.jks')
             storePassword 'philippeGazeau01*'
             keyAlias 'key0'
             keyPassword 'philippeGazeau01*'
@@ -29,7 +29,6 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    buildToolsVersion '29.0.2'
     buildTypes {
         release {
             signingConfig signingConfigs.debug
@@ -41,6 +40,7 @@ android {
             versionNameSuffix '1.1'
         }
     }
+    namespace 'dsp.calculator'
 }
 
 
