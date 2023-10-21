@@ -1,8 +1,5 @@
 package dsp.calculator.bo;
 
-import dsp.calculator.App;
-import dsp.calculator.Settings;
-import dsp.calculator.enums.FacilityTypes;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,7 +19,4 @@ public class RecipeCalculation {
         return recipe.getRateByMinute() * getFacilityCount();
     }
 
-    public float getDeltaProductionConsumtion(){
-        return getProductionRate()-consumptionAsked;
-    }
 }

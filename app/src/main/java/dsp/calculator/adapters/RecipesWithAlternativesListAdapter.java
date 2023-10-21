@@ -83,20 +83,17 @@ public class RecipesWithAlternativesListAdapter extends RecyclerView.Adapter<Rec
         public void onClick(View view) {
             if(view.getId() != viewElements.switchAlt1.getId())
                 viewElements.switchAlt1.setChecked(false);
+
             if(view.getId() != viewElements.switchAlt2.getId())
                 viewElements.switchAlt2.setChecked(false);
+
             if(view.getId() != viewElements.switchAlt3.getId())
                 viewElements.switchAlt3.setChecked(false);
+
             switch(view.getId()) {
-                case R.id.switchAlt1:
-                    App.get().getSettings().setAlternative(alternatives.get(0));
-                    break;
-                case R.id.switchAlt2:
-                    App.get().getSettings().setAlternative(alternatives.get(1));
-                    break;
-                case R.id.switchAlt3:
-                    App.get().getSettings().setAlternative(alternatives.get(2));
-                    break;
+//                case R.id.switchAlt1: App.get().getSettings().setAlternative(alternatives.get(0)); break;
+//                case R.id.switchAlt2: App.get().getSettings().setAlternative(alternatives.get(1)); break;
+//                case R.id.switchAlt3: App.get().getSettings().setAlternative(alternatives.get(2)); break;
             }
         }
         private void setHeight(int countOfAlternativesToDisplay){

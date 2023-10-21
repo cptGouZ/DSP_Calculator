@@ -29,14 +29,6 @@ public class Recipe implements Comparable<Recipe> {
     @Ignore
     private List<Consumption> consumptions = new ArrayList<>();
 
-    public Recipe(String name, String facilityType, float rateByMinute, String pictureAltName, List<Consumption> consumptions) {
-        this.name = name;
-        this.facilityType = facilityType;
-        this.rateByMinute = rateByMinute;
-        this.consumptions = consumptions;
-        this.pictureAltName = pictureAltName;
-    }
-
     public float getRateByMinute(){
         float ratioProd = 100;
         if(FacilityTypes.ASSEMBLER.equals(facilityType)){
@@ -61,11 +53,15 @@ public class Recipe implements Comparable<Recipe> {
         for (Consumption c : consumptions) {
             if(sb.length()!=0)
                 sb.append("\n");
-            sb.append("needs " + c.getRate() + " " + c.getConsumedRecipeName());
+            sb.append("needs ")
+                .append(c.getRate())
+                .append(" ")
+                .append(c.getConsumedRecipeName());
         }
         if(sb.length()!=0)
             sb.append("\n");
-        sb.append("Made in " + facilityType);
+        sb.append("Made in ")
+            .append(facilityType);
         return sb.toString();
     }
 

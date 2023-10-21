@@ -13,26 +13,19 @@ import dsp.calculator.bo.Recipe;
 import dsp.calculator.databinding.RecipeDropdownItemBinding;
 
 public class RecipeDropdownAdapter extends ArrayAdapter<Recipe> {
-
-    private RecipeDropdownItemBinding recipeView;
-
     public RecipeDropdownAdapter(Context context, int layoutId, List<Recipe> itemList){
         super(context, layoutId, itemList);
     }
 
     @Override
     public boolean isEnabled(int position){
-        if(position == 0) {
-            return false;
-        }
-        else {
-            return true;
-        }
+        return position != 0;
     }
 
     //Eléments afficher dans le menu déroulant
     @Override
     public View getDropDownView(int position, View convertView, ViewGroup parent) {
+        RecipeDropdownItemBinding recipeView;
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         recipeView = RecipeDropdownItemBinding.inflate(
                 layoutInflater, parent, false);
@@ -42,7 +35,7 @@ public class RecipeDropdownAdapter extends ArrayAdapter<Recipe> {
         return recipeView.getRoot();
     }
 
-    //C'est la vue affiché sur la page principele
+    //C'est la vue affichée sur la page principale
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {

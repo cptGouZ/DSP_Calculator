@@ -13,7 +13,7 @@ import dsp.calculator.enums.RecipeNames;
 public class Datas {
     private static Datas instance;
     private static int incId = 0;
-    private List<Recipe> datas = new ArrayList<>();
+    private final List<Recipe> datas = new ArrayList<>();
 
     private Datas(){}
     public static Datas get(){

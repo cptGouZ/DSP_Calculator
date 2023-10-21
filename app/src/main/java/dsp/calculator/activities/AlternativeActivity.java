@@ -3,16 +3,11 @@ package dsp.calculator.activities;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
-import java.util.List;
-
 import dsp.calculator.Datas;
-import dsp.calculator.R;
 import dsp.calculator.adapters.RecipesWithAlternativesListAdapter;
-import dsp.calculator.bo.Recipe;
 import dsp.calculator.databinding.AlternativeListBinding;
 
 public class AlternativeActivity extends AppCompatActivity {

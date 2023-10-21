@@ -24,8 +24,7 @@ import dsp.calculator.enums.CalculMode;
 
 public class MainActivity extends AppCompatActivity {
     private MainBinding binding;
-    private RecipeResultAdapter recipeResultAdapter = new RecipeResultAdapter();
-    private RecipeDropdownAdapter spinnerArrayAdapter;
+    private final RecipeResultAdapter recipeResultAdapter = new RecipeResultAdapter();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,17 +50,18 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch(item.getItemId()){
-            case R.id.menuSettings:
-                startActivity(new Intent(this, SettingsActivity.class));
-                return true;
-            case R.id.menuAternatives:
-                startActivity(new Intent(this, AlternativeActivity.class));
+//            case (R.id.menuSettings):
+//                startActivity(new Intent(this, SettingsActivity.class));
+//                return true;
+//            case (R.id.menuAternatives):
+//                startActivity(new Intent(this, AlternativeActivity.class));
             default :
                 return super.onOptionsItemSelected(item);
         }
     }
 
     private void setRecipeListe(){
+        RecipeDropdownAdapter spinnerArrayAdapter;
         spinnerArrayAdapter = new RecipeDropdownAdapter(
                 this,
                 android.R.layout.simple_spinner_dropdown_item,
@@ -72,12 +72,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setActions(){
-        binding.radNbOfFacility.setOnClickListener(view -> {
-            App.get().getSettings().setCalculMode(CalculMode.NB_FACILITY);
-        });
-        binding.radRatePerMin.setOnClickListener(view -> {
-            App.get().getSettings().setCalculMode(CalculMode.RATE_BY_MIN);
-        });
+        binding.radNbOfFacility.setOnClickListener(view ->
+                App.get().getSettings().setCalculMode(CalculMode.NB_FACILITY));
+        binding.radRatePerMin.setOnClickListener(view ->
+                App.get().getSettings().setCalculMode(CalculMode.RATE_BY_MIN));
 
         binding.btnSubmit.setOnClickListener((view)->{
 
@@ -88,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
                 App.get().addRecipeToMake(r, rate);
                 recipeResultAdapter.setRecipesToDisplay(App.get().getResults());
             }else{
-                Toast.makeText(this,"A recipe must be choosen and a wanted rate set", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,"A recipe must be chosen and a wanted rate set", Toast.LENGTH_SHORT).show();
             }
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(view.getWindowToken(),0);
@@ -97,14 +95,14 @@ public class MainActivity extends AppCompatActivity {
         binding.btnRemove.setOnClickListener((view)->{
             Recipe r = (Recipe)binding.cmbRecipe.getSelectedItem();
             String f = String.valueOf(binding.txtWantedRate.getText());
-            Toast.makeText(this,String.valueOf(binding.txtWantedRate.getText()), Toast.LENGTH_SHORT);
+            Toast.makeText(this,String.valueOf(binding.txtWantedRate.getText()), Toast.LENGTH_SHORT).show();
 
             if( r != null && !f.isEmpty()) {
                 float rate = Float.parseFloat(f);
                 App.get().removeRecipeToMake(r, rate);
                 recipeResultAdapter.setRecipesToDisplay(App.get().getResults());
             }else{
-                Toast.makeText(this,"A recipe must be choosen and a wanted rate set", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,"A recipe must be chosen and a wanted rate set", Toast.LENGTH_SHORT).show();
             }
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(view.getWindowToken(),0);

@@ -15,8 +15,10 @@ import dsp.calculator.bo.Recipe;
 import dsp.calculator.bo.RecipeCalculation;
 import dsp.calculator.enums.CalculMode;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
+@EqualsAndHashCode(callSuper = true)
 public class App extends Application {
     //Singleton
     private static App instance;
@@ -78,12 +80,11 @@ public class App extends Application {
 
     public List<RecipeCalculation> getResults(){
         HashMap<Long, RecipeCalculation> mixture = new HashMap<>();
-        for (Map.Entry lorc: listeOfRecipeToMake.entrySet()) {
-            RecipeCalculation recipeCalculation = (RecipeCalculation)lorc.getValue();
+        for (Map.Entry listOfRecipConsumption: listeOfRecipeToMake.entrySet()) {
+            RecipeCalculation recipeCalculation = (RecipeCalculation)listOfRecipConsumption.getValue();
             calculLevel(recipeCalculation, mixture);
         }
-        List<RecipeCalculation> retour = new ArrayList<>(mixture.values());
-        return retour;
+        return new ArrayList<>(mixture.values());
     }
 
     private void calculLevel (RecipeCalculation recipeCalculation, HashMap<Long, RecipeCalculation> mixture){
@@ -100,7 +101,7 @@ public class App extends Application {
 
             recipeInConsumption = null;
             List<Recipe> resultDao = Datas.get().getByName(c.getConsumedRecipeName());
-            if (resultDao.size()>0) {
+            if (!resultDao.isEmpty()) {
                 recipeInConsumption = resultDao.get(0);
                 if(resultDao.size()>1){
                     recipeInConsumption = Datas.get().getById(App.get().getSettings().getAlternative(c.getConsumedRecipeName()));
