@@ -46,18 +46,17 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.main_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
-
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch(item.getItemId()){
-//            case (R.id.menuSettings):
-//                startActivity(new Intent(this, SettingsActivity.class));
-//                return true;
-//            case (R.id.menuAternatives):
-//                startActivity(new Intent(this, AlternativeActivity.class));
-            default :
-                return super.onOptionsItemSelected(item);
+        int itemId = item.getItemId();
+        if (itemId == R.id.menuSettings) {
+            startActivity(new Intent(this, SettingsActivity.class));
+            return true;
+        } else if (itemId == R.id.menuAternatives) {
+            startActivity(new Intent(this, AlternativeActivity.class));
+            return super.onOptionsItemSelected(item);
         }
+        return super.onOptionsItemSelected(item);
     }
 
     private void setRecipeListe(){

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:clickable="true"
-    android:paddingTop="24dp">
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:clickable="true"
+             android:paddingTop="24dp" android:focusable="true">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -31,27 +31,29 @@
                     android:layout_height="match_parent">
 
                     <ImageView
-                        android:id="@+id/imgAlt1"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        tools:srcCompat="@tools:sample/avatars"
-                        android:layout_weight="0" />
+                            android:id="@+id/imgAlt1"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            tools:srcCompat="@tools:sample/avatars"
+                            android:layout_weight="0"
+                            android:importantForAccessibility="no"/>
 
                     <TextView
-                        android:id="@+id/txtAlt1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:text="TextView"
-                        android:layout_weight="1" />
+                            android:id="@+id/txtAlt1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_weight="1"/>
 
-                    <Switch
-                        android:id="@+id/switchAlt1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="1dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_weight="0" />
+                    <androidx.appcompat.widget.SwitchCompat
+                            android:id="@+id/switchAlt1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="1dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_weight="0"
+                            android:minWidth="48dp"
+                            android:minHeight="48dp"/>
 
                 </TableRow>
 
@@ -61,27 +63,28 @@
                     android:layout_height="match_parent">
 
                     <ImageView
-                        android:id="@+id/imgAlt2"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        tools:srcCompat="@tools:sample/avatars"
-                        android:layout_weight="0" />
+                            android:id="@+id/imgAlt2"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            tools:srcCompat="@tools:sample/avatars"
+                            android:layout_weight="0"
+                            android:importantForAccessibility="no"/>
 
                     <TextView
-                        android:id="@+id/txtAlt2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:text="TextView"
-                        android:layout_weight="1"/>
+                            android:id="@+id/txtAlt2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_weight="1"/>
 
-                    <Switch
-                        android:id="@+id/switchAlt2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="1dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_weight="0" />
+                    <androidx.appcompat.widget.SwitchCompat
+                            android:id="@+id/switchAlt2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="1dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_weight="0"
+                            android:minHeight="48dp"/>
 
                 </TableRow>
 
@@ -91,27 +94,28 @@
                     android:layout_height="match_parent">
 
                     <ImageView
-                        android:id="@+id/imgAlt3"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        tools:srcCompat="@tools:sample/avatars"
-                        android:layout_weight="0" />
+                            android:id="@+id/imgAlt3"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            tools:srcCompat="@tools:sample/avatars"
+                            android:layout_weight="0"
+                            android:importantForAccessibility="no"/>
 
                     <TextView
-                        android:id="@+id/txtAlt3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:text="TextView"
-                        android:layout_weight="1"/>
+                            android:id="@+id/txtAlt3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_weight="1"/>
 
-                    <Switch
-                        android:id="@+id/switchAlt3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="1dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_weight="0" />
+                    <androidx.appcompat.widget.SwitchCompat
+                            android:id="@+id/switchAlt3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="1dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_weight="0"
+                            android:minHeight="48dp"/>
 
                 </TableRow>
             </TableLayout>

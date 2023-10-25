@@ -19,18 +19,18 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/txtWantedRate"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint="qte"
-        android:inputType="number"
-        app:layout_constraintBottom_toTopOf="@+id/btnRemove"
-        app:layout_constraintEnd_toEndOf="@+id/cmbRecipe"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/radioGroup"
-        app:layout_constraintTop_toBottomOf="@+id/cmbRecipe" />
+            android:id="@+id/txtWantedRate"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:hint="@string/QUANTITY"
+            android:inputType="number"
+            app:layout_constraintBottom_toTopOf="@+id/btnRemove"
+            app:layout_constraintEnd_toEndOf="@+id/cmbRecipe"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/radioGroup"
+            app:layout_constraintTop_toBottomOf="@+id/cmbRecipe" android:autofillHints=""/>
 
     <FrameLayout
         android:id="@+id/frameLayout"
@@ -56,34 +56,36 @@
         app:layout_constraintGuide_begin="201dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btnSubmit"
-        android:layout_width="57dp"
-        android:layout_height="58dp"
-        android:layout_marginStart="16dp"
-        android:background="@color/white"
-        android:src="@android:drawable/ic_input_add"
-        app:layout_constraintBottom_toBottomOf="@+id/btnRemove"
-        app:layout_constraintStart_toEndOf="@+id/btnRemove"
-        app:layout_constraintTop_toTopOf="@+id/btnRemove" />
+            android:id="@+id/btnSubmit"
+            android:layout_width="57dp"
+            android:layout_height="58dp"
+            android:layout_marginStart="16dp"
+            android:background="@color/white"
+            android:src="@android:drawable/ic_input_add"
+            app:layout_constraintBottom_toBottomOf="@+id/btnRemove"
+            app:layout_constraintStart_toEndOf="@+id/btnRemove"
+            app:layout_constraintTop_toTopOf="@+id/btnRemove" android:contentDescription="@string/ADD"
+            app:backgroundTint="#11A620"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btnRemove"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="88dp"
-        android:layout_marginBottom="4dp"
-        android:clickable="true"
-        app:backgroundTint="#F44336"
-        app:layout_constraintBottom_toTopOf="@+id/guideline3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_baseline_remove_24" />
+            android:id="@+id/btnRemove"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="88dp"
+            android:layout_marginBottom="4dp"
+            android:clickable="true"
+            app:backgroundTint="#CD3328"
+            app:layout_constraintBottom_toTopOf="@+id/guideline3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/ic_baseline_remove_24" android:contentDescription="@string/REMOVE"
+            android:focusable="true"/>
 
     <Button
         android:id="@+id/btnClear"
         android:layout_width="89dp"
         android:layout_height="51dp"
         android:layout_marginEnd="16dp"
-        android:text="Clear"
+        android:text="@string/CLEAR"
         app:layout_constraintBottom_toBottomOf="@+id/btnSubmit"
         app:layout_constraintEnd_toStartOf="@+id/btnRemove"
         app:layout_constraintTop_toTopOf="@+id/btnSubmit"
@@ -102,14 +104,14 @@
             android:id="@+id/radNbOfFacility"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nb of facilities" />
+            android:text="@string/NbOfFacilities" />
 
         <RadioButton
             android:id="@+id/radRatePerMin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:enabled="true"
-            android:text="Rate per min" />
+            android:text="@string/RatePerMin" />
     </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

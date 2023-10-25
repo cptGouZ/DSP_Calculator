@@ -48,16 +48,19 @@ public class Settings {
     }
 
     public void save(int selectedAssembler, int selectedSmelter ){
-//        switch(selectedAssembler) {
-//            case (R.id.optionAssemblerMk1): setAssemblerRatio(ASSEMBLEUR_MK1); break;
-//            case (R.id.optionAssemblerMk2): setAssemblerRatio(ASSEMBLEUR_MK2); break;
-//            case (R.id.optionAssemblerMk3): setAssemblerRatio(ASSEMBLEUR_MK3); break;
-//        }
-//
-//        switch(selectedSmelter) {
-//            case (R.id.optionSmelterMk1): setSmelterRatio(SMELTER_MK1); break;
-//            case (R.id.optionSmelterMk2): setSmelterRatio(SMELTER_MK2); break;
-//        }
+        if (selectedAssembler == R.id.optionAssemblerMk1) {
+            setAssemblerRatio(ASSEMBLEUR_MK1);
+        } else if (selectedAssembler == R.id.optionAssemblerMk2) {
+            setAssemblerRatio(ASSEMBLEUR_MK2);
+        } else if (selectedAssembler == R.id.optionAssemblerMk3) {
+            setAssemblerRatio(ASSEMBLEUR_MK3);
+        }
+
+        if (selectedSmelter == R.id.optionSmelterMk1) {
+            setSmelterRatio(SMELTER_MK1);
+        } else if (selectedSmelter == R.id.optionSmelterMk2) {
+            setSmelterRatio(SMELTER_MK2);
+        }
     }
 
     public void setAlternative(Recipe r){

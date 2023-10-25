@@ -19,7 +19,7 @@ public class RecipeDropdownAdapter extends ArrayAdapter<Recipe> {
 
     @Override
     public boolean isEnabled(int position){
-        return position != 0;
+        return true;
     }
 
     //Eléments afficher dans le menu déroulant

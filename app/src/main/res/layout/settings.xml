@@ -10,7 +10,7 @@
         android:id="@+id/lblAssemblerLevel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Assembler Level"
+        android:text="@string/AssemblerLevel"
         app:layout_constraintBottom_toTopOf="@+id/optGroupAssembleur"
         app:layout_constraintStart_toStartOf="@+id/optGroupAssembleur" />
 
@@ -30,26 +30,26 @@
             style="@style/Widget.AppCompat.CompoundButton.RadioButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Assembler MK1" />
+            android:text="@string/AssemblerMk1" />
 
         <RadioButton
             android:id="@+id/optionAssemblerMk2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Assembler MK2" />
+            android:text="@string/AssemblerMk2" />
 
         <RadioButton
             android:id="@+id/optionAssemblerMk3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Assembler MK3" />
+            android:text="@string/AssemblerMk3" />
     </RadioGroup>
 
     <TextView
         android:id="@+id/lblSmelterLevel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Smelter Level"
+        android:text="@string/SmelterLevel"
         app:layout_constraintBottom_toTopOf="@+id/optGroupSmelter"
         app:layout_constraintStart_toStartOf="@+id/optGroupSmelter" />
 
@@ -67,13 +67,13 @@
             android:id="@+id/optionSmelterMk1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Smelter MK1" />
+            android:text="@string/SmelterMk1" />
 
         <RadioButton
             android:id="@+id/optionSmelterMk2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Smelter MK2" />
+            android:text="@string/SmelterMk2" />
     </RadioGroup>
 
     <Button
@@ -81,7 +81,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:text="Save"
+        android:text="@string/Save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -92,7 +92,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:text="Return"
+        android:text="@string/Return"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btnSave"
         app:layout_constraintHorizontal_bias="0.5"

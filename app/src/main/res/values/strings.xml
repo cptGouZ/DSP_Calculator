@@ -1,5 +1,27 @@
 <resources>
     <string name="app_name">DSP Calculator</string>
+    <string name="ADD">add</string>
+    <string name="REMOVE">Remove</string>
+    <string name="QUANTITY">Quantity</string>
+    <string name="CLEAR">Clear</string>
+    <string name="NbOfFacilities">Nb of facilities</string>
+    <string name="RatePerMin">Rate per min</string>
+    <string name="Back">Back</string>
+    <string name="AssemblerLevel">Assembler Level</string>
+    <string name="AssemblerMk2">Assembler MK2</string>
+    <string name="AssemblerMk3">Assembler MK3</string>
+    <string name="AssemblerMk1">Assembler MK1</string>
+    <string name="SmelterLevel">Smelter Level</string>
+    <string name="SmelterMk1">Smelter MK1</string>
+    <string name="SmelterMk2">Smelter MK2</string>
+    <string name="Save">Save</string>
+    <string name="Return">Return</string>
+    <string name="FacilitiesOfType">Facilities of type :</string>
+    <string name="Consumption">Consumption :</string>
+    <string name="FacilitiesNeeded">Facilities needed :</string>
+    <string name="Production">Production :</string>
+    <string name="Assembler">Assembler</string>
+    <string name="min">/min</string>
 
 
 </resources>

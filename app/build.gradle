@@ -31,7 +31,7 @@ android {
 
     signingConfigs {
         debug {
-            storeFile file('Z:\\Programmation\\KeyStore\\dsp_key_store.jks')
+            storeFile file('D:\\KeyStore\\dsp_key_store.jks')
             storePassword 'philippeGazeau01*'
             keyAlias 'key0'
             keyPassword 'philippeGazeau01*'
@@ -48,14 +48,17 @@ android {
     }
 }
 
+
+/*
 allprojects {
     tasks.withType(com.android.build.gradle.internal.tasks.featuresplit.PackagedDependenciesWriterTask).configureEach {
         it.outputs.doNotCacheIf("https://issuetracker.google.com/196847356")  { true }
     }
-}
+}*/
 
 dependencies {
 //lombok
+    //noinspection AnnotationProcessorOnCompilePath
     implementation 'org.projectlombok:lombok:1.18.30'
     annotationProcessor 'org.projectlombok:lombok:1.18.30'
 //Android
@@ -70,7 +73,4 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
-
-
-
 }
