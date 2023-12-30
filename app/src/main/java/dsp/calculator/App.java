@@ -96,9 +96,6 @@ public class App extends Application {
         float newConsumptionAsked = oldConsumptionAsked + recipeCalculation.getConsumptionAsked();
         mixture.get(recipeId).setConsumptionAsked(newConsumptionAsked);
         for (Consumption c : recipeCalculation.getRecipe().getConsumptions()) {
-
-            Log.i("TAG", "calculLevel: "+c.getConsumedRecipeName());
-
             recipeInConsumption = null;
             List<Recipe> resultDao = Datas.get().getByName(c.getConsumedRecipeName());
             if (!resultDao.isEmpty()) {

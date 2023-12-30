@@ -62,12 +62,15 @@ public class RecipeResultAdapter extends RecyclerView.Adapter<RecipeResultAdapte
         }
 
         //méthode d'association de la vue et des valeurs d'un élément + définition des actions des bouton si besoin
-        public void bind(final RecipeCalculation recipe) {
-            viewElements.txtProductionRate.setText(String.valueOf(recipe.getProductionRate()));
-            viewElements.txtConsumptionRate.setText(String.valueOf(recipe.getConsumptionAsked()));
-            viewElements.txtFacilityType.setText(recipe.getRecipe().getFacilityType());
-            viewElements.txtFacilityNeeded.setText(String.valueOf(recipe.getFacilityCount()));
-            viewElements.imgRecipe.setImageResource(recipe.getRecipe().getImageId());
+        public void bind(final RecipeCalculation recipeConumption) {
+            viewElements.txtProductionRate.setText(String.valueOf(recipeConumption.getProductionRate()));
+            viewElements.txtConsumptionRate.setText(String.valueOf(recipeConumption.getConsumptionAsked()));
+            viewElements.txtFacilityType.setText(recipeConumption.getRecipe().getFacilityType());
+            viewElements.txtFacilityNeeded.setText(String.valueOf(recipeConumption.getFacilityCount()));
+            viewElements.txtNbFacilitiesForMK1Belt.setText(String.valueOf(recipeConumption.getRecipe().getNbFacilitiyInLineMK1()));
+            viewElements.txtNbFacilitiesForMK2Belt.setText(String.valueOf(recipeConumption.getRecipe().getNbFacilitiyInLineMK2()));
+            viewElements.txtNbFacilitiesForMK3Belt.setText(String.valueOf(recipeConumption.getRecipe().getNbFacilitiyInLineMK3()));
+            viewElements.imgRecipe.setImageResource(recipeConumption.getRecipe().getImageId());
         }
     }
 }

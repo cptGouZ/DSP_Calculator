@@ -13,10 +13,11 @@ public class Settings {
     public static final int ASSEMBLEUR_MK3 = 150;
     public static final int SMELTER_MK1 = 100;
     public static final int SMELTER_MK2 = 200;
+    public static final int BELT_MK1 = 360;
+    public static final int BELT_MK2 = 720;
+    public static final int BELT_MK3 = 1080;
     public static final String CALCUL_MODE = "calcul_mode";
-
     private final SharedPreferences sp;
-
     Settings(SharedPreferences sharedPreferences){
         this.sp = sharedPreferences;
     }

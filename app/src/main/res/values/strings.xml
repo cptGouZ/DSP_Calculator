@@ -22,6 +22,9 @@
     <string name="Production">Production :</string>
     <string name="Assembler">Assembler</string>
     <string name="min">/min</string>
+    <string name="NbFacilitiesForMK1Belt">Nb facilities for MK 1 belt :</string>
+    <string name="NbFacilitiesForMK2Belt">Nb facilities for MK 2 belt :</string>
+    <string name="NbFacilitiesForMK3Belt">Nb facilities for MK 3 belt :</string>
 
 
 </resources>

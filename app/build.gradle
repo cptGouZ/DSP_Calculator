@@ -48,14 +48,6 @@ android {
     }
 }
 
-
-/*
-allprojects {
-    tasks.withType(com.android.build.gradle.internal.tasks.featuresplit.PackagedDependenciesWriterTask).configureEach {
-        it.outputs.doNotCacheIf("https://issuetracker.google.com/196847356")  { true }
-    }
-}*/
-
 dependencies {
 //lombok
     //noinspection AnnotationProcessorOnCompilePath
